@@ -2,6 +2,10 @@
 	
 	$title = "User List Page";
 	include('header.php');
+	require_once('../model/userModel.php');
+	$users = getAllUser();
+
+	//print_r($users);
 
 ?>
 
@@ -24,33 +28,19 @@
 				<td>EMAIL</td>
 				<td>ACTION</td>
 			</tr>
+			
+			<?php for($i=0; $i < count($users); $i++){ ?>
 			<tr>
-				<td>1</td>
-				<td>alamin</td>
-				<td>alamin@gmail.com</td>
+				<td><?=$users[$i]['id']?></td>
+				<td><?=$users[$i]['username']?></td>
+				<td><?=$users[$i]['email']?></td>
 				<td>
-					<a href="edit.php?id=1"> EDIT </a> |
-					<a href="delete.php?id=1"> DELETE </a> 
+					<a href="edit.php?id=<?= $users[$i]['id']?>"> EDIT </a> |
+					<a href="delete.php?id=<?= $users[$i]['id']?>"> DELETE </a> 
 				</td>
 			</tr>
-			<tr>
-				<td>2</td>
-				<td>xyz</td>
-				<td>xyz@aiub.edu</td>
-				<td>
-					<a href="edit.php?id=2"> EDIT </a> |
-					<a href="delete.php?id=2"> DELETE </a> 
-				</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>abc</td>
-				<td>abc@aiub.edu</td>
-				<td>
-					<a href="edit.php?id=3"> EDIT </a> |
-					<a href="delete.php?id=3"> DELETE </a> 
-				</td>
-			</tr>
+
+			<?php } ?>
 		</table>
 			
 	</div>
