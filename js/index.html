@@ -5,9 +5,13 @@
 
 </head>
 <body>
-	<h1>JS Example</h1>
-	<input type="text" name="" >
-	<input type="button" name="" value="click" onclick="alert('test')">
+	<h1 id="myh1">JS Example</h1>
+	<input type="text" name="" id="name" onblur="getName()" />
+	<input type="button" name="" value="click" onclick="changeStyle()">
+
+	<div id="mydiv" style="width: 100px; height: 100px; background-color: green; position: relative;">
+		
+	</div>
 
 	<script>
 		"use strict"
@@ -43,11 +47,58 @@
 		//console.log(name);
 		//alert('test');
 
-		function test(){
-			document.write('this is a test ');			
+		/*function test(f1){
+			f1();	
 		}
 
-		//console.log(this);
+		const f1 = function(){
+			document.write('this is a test ');
+		}*/
+
+		//const f1 = ()=>document.write('this is a test ');
+	
+		//test(f1);
+		console.log('test');
+		//alert('test');
+
+
+		function changeVal(){
+			/*const element	= document.getElementsByTagName('h1')[0];
+			element.innerHTML = "test";*/
+
+			//document.getElementsByTagName('h1')[0].innerHTML = "test";
+			document.getElementById('myh1').innerHTML = "test....";
+		}
+
+		function getName(){
+			const name = document.getElementById('name').value;
+
+			if(name == ""){
+				document.getElementById('myh1').innerHTML = "invalid data";
+			}else{
+				document.getElementById('myh1').innerHTML = name;
+			}
+		}
+
+		function changeStyle(){
+			let pos = document.getElementById('mydiv').style.left;
+			if(pos == ""){
+				pos = "15px";
+				document.getElementById('mydiv').style.left = pos;
+			}else{
+				pos = parseInt(pos.replace('px', ''));
+				pos += 15;
+				document.getElementById('mydiv').style.left = pos+"px";
+			}
+
+			console.log(pos);
+			if(pos != 300){
+				setTimeout(function(){
+					changeStyle();
+				}, 1000);
+			}
+		}
+
 	</script>
 </body>
 </html>
